@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>section4p4.asm</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: Monospaced}
+pre {color: #000000; background-color: #ffffff; font-family: Monospaced}
+table {color: #000000; background-color: #e9e8e2; font-family: Monospaced}
+.highlight-caret-row {background-color: #e9eff8}
+.ST6 {color: #009be1}
+.ST4 {color: #009600}
+.ST1 {color: #99006b; background-color: #e9eff8}
+.ST3 {color: #99006b}
+.ST5 {color: #00009b; font-family: Monospaced; font-weight: bold}
+.ST2 {color: #0000ff}
+.ST0 {color: #0000ff; background-color: #e9eff8}
+.ST7 {color: #ce7b00}
+-->
+</style>
+</head>
+<body>
+<table width="100%"><tr><td align="center">C:\Users\b280lab\MPLABXProjects\335 labs\StephenNathanLab4\StephenNathanLab4p4.X\section4p4.asm</td></tr></table>
+<pre>
+ 1     <span class="ST0">list</span>    <span class="ST1">F</span><span class="highlight-caret-row">=</span><span class="ST1">inhx8m</span><span class="highlight-caret-row">,</span> <span class="ST1">P</span><span class="highlight-caret-row">=</span><span class="highlight-caret-row">16</span><span class="ST1">F88</span><span class="highlight-caret-row">,</span> <span class="ST1">R</span><span class="highlight-caret-row">=</span><span class="ST1">hex</span><span class="highlight-caret-row">,</span> <span class="ST1">N</span><span class="highlight-caret-row">=</span><span class="highlight-caret-row">0</span>
+ 2 
+ 3 <span class="ST2">#include</span> <span class="ST3">p16f88.inc</span>
+ 4 
+ 5     <span class="ST2">__config</span> <span class="ST3">_CONFIG1</span>, <span class="ST3">_FOSC_INTOSCIO</span> &amp; <span class="ST3">_WDT_OFF</span> &amp; <span class="ST3">_LVP_OFF</span> &amp; <span class="ST3">_CCP1_RB0</span>
+ 6     <span class="ST2">__config</span> <span class="ST3">_CONFIG2</span>, <span class="ST3">_IESO_OFF</span> &amp; <span class="ST3">_FCMEN_OFF</span>
+ 7 
+ 8     <span class="ST2">Errorlevel</span> -302 <span class="ST4">; switches off Message [302]: Register in operand not in bank 2</span>
+ 9 
+10 <span class="ST4">; Definitions ------------------------------------------------------------------</span>
+11     
+12 <span class="ST4">; RAM preserved ----------------------------------------------------------------</span>
+13 
+14 <span class="ST4">; Constants --------------------------------------------------------------------</span>
+15 
+16 <span class="ST4">; Program Memory ---------------------------------------------------------------</span>
+17             <span class="ST2">ORG</span>     0x0000
+18             <span class="ST5">GOTO</span>    <span class="ST3">Init</span>
+19 
+20 <span class="ST4">; Interrupt Service Routine (ISR) ----------------------------------------------</span>
+21             <span class="ST2">ORG</span>     0x0004      <span class="ST4">; Interrupt vector location</span>
+22 
+23 <span class="ST4">; Microcontroller initialization -----------------------------------------------</span>
+24 <span class="ST3">Init</span>        <span class="ST2">ORG</span>     0x0008
+25 
+26 <span class="ST4">; Main program -----------------------------------------------------------------</span>
+27 <span class="ST3">Start</span>
+28 <span class="ST4">; **** YOUR CODE GOES HERE ****</span>
+29         
+30             <span class="ST5">BSF</span> <span class="ST6">STATUS</span>, <span class="ST3">RP0</span>
+31             <span class="ST5">MOVLW</span> <span class="ST5">b</span><span class="ST7">&#39;00000000&#39;</span>
+32             <span class="ST5">MOVWF</span> <span class="ST6">TRISB</span>
+33             <span class="ST5">BCF</span> <span class="ST6">STATUS</span>, <span class="ST3">RP0</span>
+34         
+35 <span class="ST3">Main</span>        <span class="ST5">MOVLW</span> <span class="ST5">b</span><span class="ST7">&#39;00000001&#39;</span>
+36             <span class="ST5">MOVWF</span> <span class="ST3">H</span><span class="ST7">&#39;21&#39;</span>
+37             <span class="ST5">MOVF</span> <span class="ST3">H</span><span class="ST7">&#39;21&#39;</span>, <span class="ST6">PORTB</span>
+38 <span class="ST3">OnLED</span>       
+39 <span class="ST4">;           MOVF PORTB, H&#39;21&#39;</span>
+40             <span class="ST5">RLF</span> <span class="ST3">H</span><span class="ST7">&#39;21&#39;</span>
+41             <span class="ST5">MOVF</span> <span class="ST3">H</span><span class="ST7">&#39;21&#39;</span>, <span class="ST3">W</span>
+42             <span class="ST5">MOVWF</span> <span class="ST6">PORTB</span>
+43             <span class="ST5">GOTO</span> <span class="ST3">Delay</span>
+44         
+45 
+46 <span class="ST4">; RANDOM DELAYLOOP NONSENSE</span>         
+47 <span class="ST3">Delay</span>       <span class="ST5">MOVLW</span> <span class="ST3">H</span><span class="ST7">&#39;CF&#39;</span>
+48             <span class="ST5">MOVWF</span> <span class="ST3">H</span><span class="ST7">&#39;30&#39;</span>
+49 <span class="ST3">Loop</span>        <span class="ST5">MOVLW</span> <span class="ST3">H</span><span class="ST7">&#39;CF&#39;</span>
+50             <span class="ST5">MOVWF</span> <span class="ST3">H</span><span class="ST7">&#39;31&#39;</span>
+51 <span class="ST3">SubLoop</span>     <span class="ST5">DECFSZ</span> <span class="ST3">H</span><span class="ST7">&#39;31&#39;</span>
+52             <span class="ST5">GOTO</span> <span class="ST3">SubLoop</span>
+53             <span class="ST5">DECFSZ</span> <span class="ST3">H</span><span class="ST7">&#39;30&#39;</span>
+54 <span class="ST4">;           GOTO Loop</span>
+55             <span class="ST5">GOTO</span> <span class="ST3">OnLED</span>
+56             
+57             
+58         
+59 <span class="ST3">Finish</span>
+60             <span class="ST2">END</span>     <span class="ST4">; End of program</span>
+61 
+62 
+63 
+64 
+</pre></body>
+</html>
