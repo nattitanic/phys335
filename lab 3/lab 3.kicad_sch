@@ -1,0 +1,109 @@
+(kicad_sch
+	(version 20260306)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "23c77eca-b6a5-468d-bbf6-6b333b07239b")
+	(paper "A4")
+	(title_block
+		(title "Lab 3 section 1: Divide by N")
+	)
+	(lib_symbols)
+	(sheet
+		(at 20.32 16.51)
+		(size 82.55 55.88)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "461b374c-23fc-4b42-824c-19685f3f1cd6")
+		(property "Sheetname" "section 1"
+			(at 20.32 15.7984 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "untitled.kicad_sch"
+			(at 20.32 72.9746 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "lab 3"
+				(path "/23c77eca-b6a5-468d-bbf6-6b333b07239b"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 35.56 102.87)
+		(size 74.93 60.96)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "72af2331-e921-4509-ac20-714ee69d8935")
+		(property "Sheetname" "section 2"
+			(at 35.56 102.1584 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "untitled.kicad_sch"
+			(at 35.56 164.4146 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "lab 3"
+				(path "/23c77eca-b6a5-468d-bbf6-6b333b07239b"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)
