@@ -1,0 +1,41 @@
+Sinedata
+         addwf   PCL, F        ; Increment into table
+         retlw   .0            ; Dummy table value
+         retlw   .128          ; 0 degree, 2.5 volt
+         retlw   .148
+         retlw   .167
+         retlw   .185
+         retlw   .200
+         retlw   .213
+         retlw   .222
+         retlw   .228
+         retlw   .230          ; 90 degree, 4.5 volt
+         retlw   .228
+         retlw   .222
+         retlw   .213
+         retlw   .200
+         retlw   .185
+         retlw   .167
+         retlw   .148
+         retlw   .128          ; 180 degree, 2.5 volt
+         retlw   .108
+         retlw   .89
+         retlw   .71
+         retlw   .56
+         retlw   .43
+         retlw   .34
+         retlw   .28
+         retlw   .26           ; 270 degree, 0.5 volt
+         retlw   .28
+         retlw   .34
+         retlw   .43
+         retlw   .56
+         retlw   .71
+         retlw   .89
+         retlw   .109
+
+Finish
+         end             ; end of program
+
+
+
