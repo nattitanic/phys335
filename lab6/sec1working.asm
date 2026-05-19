@@ -56,8 +56,6 @@ Start
 ;	Set Port A and B
 	    BANKSEL TRISB
 	    BCF TRISB, 0
-;	    MOVLW H'00'
-;	    MOVWF TRISB ; B as Output
 	    
 	    MOVWF ANSEL ; A as Digital
 	    
@@ -123,41 +121,6 @@ Start
 		    MOVWF CCPR1L
 		    GOTO MainLoop
 
-
-
-
-
-
-
-	;	
-	;;;	Set trisb to be the output
-	;;	    BANKSEL TRISB
-	;;	    MOVLW H'00'
-	;;	    MOVWF TRISB
-	;	    
-	;;	Set PR2 to the correct value (Controls the freq)
-	;	    BANKSEL PR2
-	;	    MOVLW H'FF'
-	;	    MOVWF PR2
-	;	    
-
-	;	    
-	;;	Set CCPR1L (LSB) and CP1CON (MSB) to control the Duty Cycle
-	;	    BANKSEL CCPR1L
-	;	    MOVLW H'5D'
-	;;	    MOVLW b'10111011'
-	;	    MOVWF CCPR1L
-	;	    
-	;	    BANKSEL CCP1CON
-	;	    MOVLW H'30'
-	;;	    MOVLW b'00101100'
-	;	    MOVWF CCP1CON
-	;	    
-	;	    
-	;	    
-	;	    BSF CCP1CON, 1
-	;	    BSF CCP1CON, 2
-;	
 Finish
             END     ; End of program
 
