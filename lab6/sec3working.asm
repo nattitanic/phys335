@@ -34,7 +34,8 @@ Start
 	CBLOCK  H'20' ; A CBLOCK defines a sequential region
 	    PortTest ; L1Var is in location H?20?
 	    DutyCycle ; loc 21
-	    DelayCount; 
+	    DelayCount;
+	    TableIndex;
 	ENDC ; ENDC ends the definition block
 	
 	; Set Consts
@@ -85,10 +86,12 @@ Start
 		    MOVF DutyCycle, W
 		    BANKSEL CCPR1L
 		    MOVWF CCPR1L
-		    BANKSEL PCL
-		    MOVLW H'01'
-		    MOVWF PCL
+		    BANKSEL W
+		    MOVLW H'00'
+		    MOVWF TableIndex
 	SubLoop	    
+		    BANKSEL TableIndex
+		    MOVF TableIndex, W
 		    CALL Sinedata
 		    BANKSEL CCPR1L
 		    ADDWF CCPR1L
@@ -128,6 +131,7 @@ Start
 		    
 		    
 	Sinedata
+	    BANKSEL PCL
 	    addwf   PCL, F        ; Increment into table
 	    retlw   .0            ; Dummy table value
 	    retlw   .128          ; 0 degree, 2.5 volt
@@ -162,6 +166,12 @@ Start
 	    retlw   .71
 	    retlw   .89
 	    retlw   .109
+	    
+	    BANKSEL W
+	    MOVLW H'00'
+	    MOVWF TableIndex
+	    return
+	    
 	Finish
 
 ;	; MSB Check
