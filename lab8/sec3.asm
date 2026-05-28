@@ -25,8 +25,8 @@ Index2	    EQU	    H'27'   ; Cycles = 5*Count1*Count2 + 4*Count2 + 1
 ; -------------------------------------------------------------------------
 	    
 ; PART 2 ==================================================================
- Latch	    EQU	    H'30'   ; Latch variable to hold state of button press
- Button    EQU	    H'31'   ; Button state variable (only use bit 0)
+; Latch	    EQU	    H'30'   ; Latch variable to hold state of button press
+; Button    EQU	    H'31'   ; Button state variable (only use bit 0)
 ; -------------------------------------------------------------------------
 	    
 ; Temporary storage for ISR needs to live in upper common area of RAM
@@ -65,7 +65,7 @@ IN_period   EQU .148	    ; 1 inch equivalent for Timer2
 	    BANKSEL PORTA
 	    MOVLW .1
 	    ADDWF UnitCtr
-	    BCF PIR1, TMR2IF
+	    
 	    
 	    
 	    SWAPF   STATUS_TEMP, W
@@ -162,8 +162,7 @@ SetTimer
 ; Initialize button control variables
 ; YOU CODE THIS:
 ;   Clear both button control variables
-	    CLRF Latch
-	    CLRF Button
+	  
 ; -------------------------------------------------------------------------
 
 	    BCF	    STATUS, RP0
@@ -180,24 +179,11 @@ PollButton
 	    ;	then jump to check the latch state
 	    ; Otherwise clear the latch
 	    ; Jump to Pulse
-	    
-	    BTFSS PORTA, RA2
-	    GOTO CheckLatch
-	    CLRF Latch
-	    GOTO Pulse
-	    
 	    ; 
 CheckLatch  ; Test the latch bit: if it is clear
 	    ;	then Call the routine to set the period register
 	    ; On return and otherwise, set the latch
 	    ; Jump to Pulse
-	    BTFSS Latch, 0
-	    CALL SetPeriod
-	    BSF Latch, 0
-	    GOTO Pulse
-	    
-	    
-	    
 	    
 ; Section 2: Routine to set the period register
 SetPeriod
@@ -205,33 +191,14 @@ SetPeriod
 	    ; Test the button state bit: if it is clear
 	    ;	GOTO Set_CM to load centimeter period
 	    ; Otherwise GOTO Set_IN
-	    
-	    BTFSS Button, 0
-	    GOTO Set_CM
-	    GOTO Set_IN
-	    
-	    
-	    
 Set_IN	    ; In either Set_CM or Set_IN, do two things:
 	    ;	1. Load W with the inch or cm period value
-	    MOVLW IN_period
-	    CALL SET_PR2
-	    GOTO Pulse
-	    
 Set_CM	    ;	2. GOTO Set_PR2
-	    MOVLW CM_period
-	    CALL SET_PR2
-	    GOTO Pulse
-	    
 SET_PR2	    ; In Set_PR2
 	    ;	Select the Bank for PR2
 	    ;	Copy W into PR2
 	    ;   Select Bank 0
 	    ; End SetPeriod with RETURN
-	    BANKSEL PR2
-	    MOVWF PR2
-	    BANKSEL PORTA
-	    RETURN
 ; -------------------------------------------------------------------------
 	    
 ; Make 10 microsecond pulse on PORTA<0>

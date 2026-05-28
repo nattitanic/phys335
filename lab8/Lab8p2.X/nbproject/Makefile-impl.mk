@@ -24,14 +24,14 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Lab8.X
+PROJECTNAME=Lab8p2.X
 
 # Active Configuration
-DEFAULTCONF=NewConfiguration
+DEFAULTCONF=default
 CONF=${DEFAULTCONF}
 
 # All Configurations
-ALLCONFS=default Copy_of_default NewConfiguration 
+ALLCONFS=default 
 
 
 # build
@@ -46,16 +46,12 @@ ALLCONFS=default Copy_of_default NewConfiguration
 # clobber
 .clobber-impl: .clobber-pre .depcheck-impl
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=default clean
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=Copy_of_default clean
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=NewConfiguration clean
 
 
 
 # all
 .all-impl: .all-pre .depcheck-impl
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=default build
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=Copy_of_default build
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=NewConfiguration build
 
 
 
